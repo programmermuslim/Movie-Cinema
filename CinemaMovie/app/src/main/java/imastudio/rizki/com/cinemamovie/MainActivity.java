@@ -12,11 +12,6 @@ import imastudio.rizki.com.cinemamovie.activity.MenuSettingActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final boolean DEBUG = false;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

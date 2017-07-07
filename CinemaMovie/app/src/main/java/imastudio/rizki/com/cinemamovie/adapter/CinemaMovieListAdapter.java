@@ -38,7 +38,7 @@ public class CinemaMovieListAdapter extends ArrayAdapter<CinemaMovieListModel> {
         ImageView posterView = (ImageView) convertView.findViewById(R.id.flavor_image);
         TextView txtTitle = (TextView)convertView.findViewById(R.id.titleMovie);
 
-        Log.v(LOG_TAG,"url "+ moviesList.getImageurl());
+
         Picasso.with(getContext()).load(moviesList.getImageurl()).placeholder(R.drawable.movie_place).fit().into(posterView);
         txtTitle.setText(moviesList.getTitle());
 

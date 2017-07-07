@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.MovieFragment">
+    tools:context=".MainActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,18 +19,12 @@
             android:stretchMode="columnWidth" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-    <!--&lt;!&ndash; A RecyclerView with some commonly used attributes &ndash;&gt;-->
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/my_recycler_view"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:scrollbars="vertical" />-->
-    <!-- Empty view is only visible when the list has no items. -->
+
     <TextView
-        android:id="@+id/empty_view"
+        android:id="@+id/txt_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        android:textAppearance="?android:textAppearanceMedium" />
 
 </RelativeLayout>

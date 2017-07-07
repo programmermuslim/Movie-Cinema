@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -26,16 +25,15 @@ import java.util.List;
 import java.util.Vector;
 
 import imastudio.rizki.com.cinemamovie.BuildConfig;
-import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListAdapter;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 
 
-public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMovieListModel>> {
-    private final String LOG_TAG = FetchCinemaMoviesTask.class.getSimpleName();
+public class SyncDataCinemaMovie extends AsyncTask<String, Void, List<CinemaMovieListModel>> {
+    private final String LOG_TAG = SyncDataCinemaMovie.class.getSimpleName();
     private ArrayAdapter<CinemaMovieListModel> mAdapter;
     public static Context mcontext;
     private CinemaMovieListModel mMovie;
-    public FetchCinemaMoviesTask(Context context, ArrayAdapter<CinemaMovieListModel> MovieAdapter){
+    public SyncDataCinemaMovie(Context context, ArrayAdapter<CinemaMovieListModel> MovieAdapter){
         mcontext = context;
         mAdapter = MovieAdapter;
     }
@@ -45,9 +43,9 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
     public List<CinemaMovieListModel> getMoviesDataFromJson(String moviesJsonStr)
             throws JSONException {
 
-        //These are the names of the json Objects that we need to be extracted
+
         final String MOVIE_ID = "id";
-        final String OWN_RESULT = "results"; // contains arrays of objects
+        final String OWN_RESULT = "results";
         final String MOVIE_POSTER = "poster_path";
         final String BACK_POSTER = "backdrop_path";
         final String MOVIE_TITLE = "title";
@@ -58,7 +56,6 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
             List<CinemaMovieListModel> moviesdata = new ArrayList<>();
 
 
-            // this will call the data that is being in the result of the json
             JSONObject movieJson = new JSONObject(moviesJsonStr);
             JSONArray movieArray = movieJson.getJSONArray(OWN_RESULT);
             Vector<ContentValues> cVVector = new Vector<ContentValues>(movieArray.length());
@@ -68,7 +65,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
 
             for (int i = 0; i < movieArray.length(); i++) {
 
-                //get the JSON object representing the movies of the single movie
+
                 JSONObject movies = movieArray.getJSONObject(i);
 
                 String poster = movies.getString(MOVIE_POSTER);
@@ -80,10 +77,8 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
                 int id = movies.getInt(MOVIE_ID);
 
 
-                imageURl = "https://image.tmdb.org/t/p/w185" + poster; //w185
-                posterURl = "https://image.tmdb.org/t/p/w500" + backposter; //720
-
-                Log.v(LOG_TAG, "movieid: " + id);
+                imageURl = "https://image.tmdb.org/t/p/w185" + poster;
+                posterURl = "https://image.tmdb.org/t/p/w500" + backposter;
 
 
                 CinemaMovieListModel movieList = new CinemaMovieListModel(imageURl, title, release_date, synopsis, rating, id,posterURl);
@@ -135,7 +130,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
 
 
             URL url = new URL(builtUri.toString());
-            Log.v(LOG_TAG, "Built uri" + builtUri.toString());
+
                        urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
@@ -156,15 +151,13 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
             }
 
             if (buffer.length() == 0) {
-                // Stream was empty.  No point in parsing.
+
                 return null;
             }
             movieJsonStr = buffer.toString();
-            Log.v(LOG_TAG, "Forecast json string: " + movieJsonStr);
+
         } catch (IOException e) {
-            Log.e("ForecastFragment", "Error ", e);
-            // If the code didn't successfully get the weather data, there's no point in attemping
-            // to parse it.
+
             return null;
         } finally {
             if (urlConnection != null) {
@@ -174,7 +167,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
                 try {
                     reader.close();
                 } catch (final IOException e) {
-                    Log.e("ForecastFragment", "Error closing stream", e);
+
                 }
             }
         }try {
@@ -188,9 +181,9 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
     @Override
     protected void onPostExecute(List<CinemaMovieListModel> movies) {
         if (movies != null) {
-            mAdapter.clear(); // first we clear all the previous entry
-            for(CinemaMovieListModel movieForecastStr : movies) { // then we add each forecast entery one by one
-                mAdapter.add(movieForecastStr); // from the server to the adapter.
+            mAdapter.clear();
+            for(CinemaMovieListModel movieForecastStr : movies) {
+                mAdapter.add(movieForecastStr);
             }
         }
     }

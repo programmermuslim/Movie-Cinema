@@ -38,11 +38,11 @@ public class CinemaMovieListModel implements Parcelable {
 
 
     public String getImageurl() {
-        Log.v(LOG_TAG, "image in list " + mImageURl);
+
         return mImageURl;
     }
     public String getBackPoster() {
-        Log.v(LOG_TAG,"back poster "+ mbackUrl);
+
         return  mbackUrl;
     }
 

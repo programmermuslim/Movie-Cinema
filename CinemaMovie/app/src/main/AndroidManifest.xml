@@ -33,9 +33,7 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
-        <!--<provider-->
-            <!--android:authorities="imastudio.rizki.com.cinemamovie"-->
-            <!--android:name=".data."/>-->
+
     </application>
 
 </manifest>

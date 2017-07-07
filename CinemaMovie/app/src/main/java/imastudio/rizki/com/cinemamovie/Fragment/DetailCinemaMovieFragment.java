@@ -4,15 +4,12 @@ package imastudio.rizki.com.cinemamovie.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,16 +20,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import imastudio.rizki.com.cinemamovie.R;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
-import imastudio.rizki.com.cinemamovie.helper.UpdateFavCinema;
-
-import static imastudio.rizki.com.cinemamovie.helper.UpdateFavCinema.ADDED_TO_FAVORITE;
 
 
 
-public class DetailCinemaMovieFragment extends Fragment implements  UpdateFavCinema.DBUpdateListener {
+public class DetailCinemaMovieFragment extends Fragment {
     View.OnClickListener monClickListener;
     private final String LOG_TAG = DetailCinemaMovieFragment.class.getSimpleName();
-    private static final boolean DEBUG = false; // Set this to false to disable logs.
+    private static final boolean DEBUG = false;
 
 
     public DetailCinemaMovieFragment() {
@@ -43,19 +37,16 @@ public class DetailCinemaMovieFragment extends Fragment implements  UpdateFavCin
     CoordinatorLayout mCoordinatorLayout;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolBar;
-    @BindView(R.id.title) TextView mMovieTitle;
-    @BindView(R.id.poster) ImageView mMoviePoster;
-    @BindView(R.id.backposter) ImageView mBackPoster;
-    @BindView(R.id.release_date) TextView mReleaseDate;
-    @BindView(R.id.rating) TextView mRatingAverage;
-    @BindView(R.id.synopsis) TextView mSynopsis;
+    @BindView(R.id.title) TextView nCinemaMovieTitle;
+    @BindView(R.id.poster) ImageView nCinemaMoviePoster;
+    @BindView(R.id.backposter) ImageView nBackPoster;
+    @BindView(R.id.release_date) TextView nReleaseDate;
+    @BindView(R.id.rating) TextView nRatingAvg;
+    @BindView(R.id.synopsis) TextView nSynopsis;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.share)
-    FloatingActionButton favshare;
-    @BindView(R.id.fav)
-    FloatingActionButton favsave;
+
 
     private Unbinder unbinder;
 
@@ -73,84 +64,26 @@ public class DetailCinemaMovieFragment extends Fragment implements  UpdateFavCin
         collapsingToolbarLayout.setTitle(movie.getTitle());
         ButterKnife.bind(this, rootView);
 
-        mMovieTitle.setText(movie.getTitle());
+        nCinemaMovieTitle.setText(movie.getTitle());
         Picasso.with(getContext())
                 .load(movie.getImageurl())
                 .placeholder(R.drawable.movie_place)
                 .error(R.drawable.image_error2)
-                .into(mMoviePoster);
+                .into(nCinemaMoviePoster);
         Picasso.with(getContext())
                 .load((movie.getBackPoster()))
                 .placeholder(R.drawable.movie_place)
                 .error(R.drawable.image_error2)
-                .into(mBackPoster);
+                .into(nBackPoster);
 
-        mReleaseDate.setText("Released :\n" + movie.getRelease_date());
-        mRatingAverage.setText(String.valueOf("Rating :\n" + movie.getRating() + "/10"));
-        mSynopsis.setText("Synopsis :\n" + movie.getSynopsis());//https://www.youtube.com/watch?v=wRaV4SIQY8A
+        nReleaseDate.setText("Released :\n" + movie.getRelease_date());
+        nRatingAvg.setText(String.valueOf("Rating :\n" + movie.getRating() + "/10"));
+        nSynopsis.setText("Synopsis :\n" + movie.getSynopsis());
 
 
         return rootView;
     }
 
-    public void onSuccess(final int operationType) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String operation;
-                if (operationType == ADDED_TO_FAVORITE) {
-                    operation = "added to favorite";
-                    favsave.setImageResource(R.drawable.ic_star);
-                } else {
-                    operation = "removed from favorite";
-                    favshare.setImageResource(R.drawable.ic_star_nfilled);
 
-                }
-
-
-            }
-        });
-    }
-
-    @Override
-    public void onFailure() {
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-
-    @Override
-    public void onStart() {
-        if (DEBUG) Log.i(LOG_TAG, "onStart()");
-        super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        if (DEBUG) Log.i(LOG_TAG, "onResume()");
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        if (DEBUG) Log.i(LOG_TAG, "onPause()");
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        if (DEBUG) Log.i(LOG_TAG, "onStop()");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (DEBUG) Log.i(LOG_TAG, "onDestroy()");
-        super.onDestroy();
-    }
 }
 
