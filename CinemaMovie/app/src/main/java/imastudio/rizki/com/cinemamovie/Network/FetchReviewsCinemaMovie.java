@@ -24,9 +24,6 @@ import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 import imastudio.rizki.com.cinemamovie.adapter.ExtrasCinemaMovieModel;
 import imastudio.rizki.com.cinemamovie.adapter.ReviewCinemaMovieModel;
 
-/**
- * Created by user on 2/23/2017.
- */
 
 
 public class FetchReviewsCinemaMovie extends AsyncTask<Integer,Void, ExtrasCinemaMovieModel> {

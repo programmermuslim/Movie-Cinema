@@ -1,8 +1,5 @@
 package imastudio.rizki.com.cinemamovie.Fragment;
 
-/**
- * Created by user on 2/21/2017.
- */
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -27,7 +24,6 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import imastudio.rizki.com.cinemamovie.Network.FetchCinemaMoviesTask;
 import imastudio.rizki.com.cinemamovie.Network.FetchReviewsCinemaMovie;
 import imastudio.rizki.com.cinemamovie.Network.FetchTrailersCinemaMovieTask;
 import imastudio.rizki.com.cinemamovie.R;
@@ -38,9 +34,7 @@ import imastudio.rizki.com.cinemamovie.helper.UpdateFavCinema;
 import static imastudio.rizki.com.cinemamovie.helper.UpdateFavCinema.ADDED_TO_FAVORITE;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class DetailCinemaMovieFragment extends Fragment implements FetchTrailersCinemaMovieTask.Event,FetchReviewsCinemaMovie.Event,View.OnClickListener, UpdateFavCinema.DBUpdateListener {
     View.OnClickListener monClickListener;
     private final String LOG_TAG = DetailCinemaMovieFragment.class.getSimpleName();
@@ -92,20 +86,20 @@ public class DetailCinemaMovieFragment extends Fragment implements FetchTrailers
         mMovieTitle.setText(movie.getTitle());
         Picasso.with(getContext())
                 .load(movie.getImageurl())
-                .placeholder(R.drawable.square_placeholder)
-                .error(R.drawable.image_error)
+                .placeholder(R.drawable.movie_place)
+                .error(R.drawable.image_error2)
                 .into(mMoviePoster);
         Picasso.with(getContext())
                 .load((movie.getBackPoster()))
-                .placeholder(R.drawable.square_placeholder)
-                .error(R.drawable.image_error)
+                .placeholder(R.drawable.movie_place)
+                .error(R.drawable.image_error2)
                 .into(mBackPoster);
 //            Glide.with(getActivity())
 //                    .load(movie.getImageurl())
 //                    //.asBitmap()
 //                    .crossFade()
 //                    .placeholder(R.drawable.image)
-//                    .error(R.drawable.image_error)
+//                    .error(R.drawable.image_error2)
 //                    .into(mMoviePoster);
         mReleaseDate.setText("Released:\n" + movie.getRelease_date());
         mRatingAverage.setText(String.valueOf("Rating:\n" + movie.getRating() + "/10"));
@@ -156,7 +150,7 @@ public class DetailCinemaMovieFragment extends Fragment implements FetchTrailers
             picasso
                     .load(TRAILER_THUMB_BASE_URL + trailer_key + "/0.jpg")
                     .resizeDimen(R.dimen.video_width, R.dimen.video_height)
-                    .placeholder(R.drawable.square_placeholder)
+                    .placeholder(R.drawable.movie_place)
                     .centerCrop()
                     .into(thumbView);
             viewTrailers.addView(thumbContainer);

@@ -26,9 +26,7 @@ import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 import imastudio.rizki.com.cinemamovie.adapter.ExtrasCinemaMovieModel;
 import imastudio.rizki.com.cinemamovie.adapter.TrailerModel;
 
-/**
- * Created by user on 2/22/2017.
- */
+
 
 public class FetchTrailersCinemaMovieTask extends AsyncTask<Integer,Void, ExtrasCinemaMovieModel> {
 

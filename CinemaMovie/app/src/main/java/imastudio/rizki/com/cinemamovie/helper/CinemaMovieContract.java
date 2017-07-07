@@ -6,9 +6,7 @@ import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Created by user on 1/31/2017.
- */
+
 
 public class CinemaMovieContract {
     public static final String CONTENT_AUTHORITY = "imastudio.rizki.com.cinemamovie";

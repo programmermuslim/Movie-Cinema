@@ -4,9 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-/**
- * Created by MAC on 7/7/17.
- */
+
 
 public class CinemaMovieListModel implements Parcelable {
     public final String LOG_TAG = CinemaMovieListModel.class.getSimpleName();

@@ -3,9 +3,7 @@ package imastudio.rizki.com.cinemamovie.adapter;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by user on 2/22/2017.
- */
+
 
 public class ReviewCinemaMovieModel implements Parcelable {
     private String author;

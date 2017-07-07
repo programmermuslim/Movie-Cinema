@@ -1,9 +1,5 @@
 package imastudio.rizki.com.cinemamovie.Network;
 
-/**
- * Created by user on 2/10/2017.
- */
-
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -33,12 +29,7 @@ import imastudio.rizki.com.cinemamovie.BuildConfig;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListAdapter;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 
-/**
- * This is the method that has like four methods within like doinbackground(),
- * onpreExecute(),onPostExecute(),onProgressUpdate. It has the threads
- * so all the networking code is running on the background thread
- * and after that it is executed by the onPostExecute() method.
- */
+
 public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMovieListModel>> {
     private final String LOG_TAG = FetchCinemaMoviesTask.class.getSimpleName();
     private ArrayAdapter<CinemaMovieListModel> mAdapter;
@@ -49,60 +40,8 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
         mAdapter = MovieAdapter;
     }
 
-//    /**
-//     * Helper method to help insertion of a new movie in the db.
-//     * This is the method which gets called when we clink on the save button and then
-//     * it checks with the database and the data that is the parceable. it first query and
-//     * then if it exist then we show a toast about it else we insert it .
-//     */
-//    public void addMovie(){
-//        //First check if the movie with the movieid already exists in the database
-//        Cursor movieCursor = mcontext.getContentResolver().query(
-//                MovieContract.MovieEntry.CONTENT_URI,new String[]{MovieContract.MovieEntry._ID},
-//                MovieContract.MovieEntry.COLUMN_MOVIE_ID + "=?",new String[]{String.valueOf(mMovie.getId())},null);
-//        Log.v(LOG_TAG,movieCursor+"cursor");
-//        // if it exist then show a toast about it else insert it into the database
-//        if (movieCursor.moveToFirst()) {
-//            int locationIdIndex = movieCursor.getColumnIndex(MovieContract.MovieEntry._ID);
-//            Log.v(LOG_TAG,locationIdIndex+"loation");
-//            Toast.makeText(mcontext,"movie exists",Toast.LENGTH_LONG).show();
-//        } else {
-//            // Now that the content provider is set up, inserting rows of data is pretty simple.
-//            // First create a ContentValues object to hold the data you want to insert.
-//            ContentValues movieValues = new ContentValues();
-//
-//            // Then add the data, along with the corresponding name of the data type,
-//            // so the content provider knows what kind of value is being inserted.
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, mMovie.getId());
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_POSTER_IMAGE, mMovie.getImageurl());
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_OVERVIEW, mMovie.getSynopsis());
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_AVERAGE_RATING, mMovie.getRating());
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, mMovie.getRelease_date());
-//            movieValues.put(MovieContract.MovieEntry.COLUMN_TITLE, mMovie.getTitle());
-//
-//            // Finally, insert location data into the database.
-//            Uri insertedUri = mcontext.getContentResolver().insert(
-//                    MovieContract.MovieEntry.CONTENT_URI,
-//                    movieValues
-//            );
-//            Toast.makeText(mcontext,"Movie added to Fav",Toast.LENGTH_LONG).show();
-//            Log.v(LOG_TAG,insertedUri+"uri");
-//            // The resulting URI contains the ID for the row.  Extract the movieId from the Uri.
-//            long movieRowId = ContentUris.parseId(insertedUri);
-//        }
-//        movieCursor.close();
-//
-//    }
 
 
-
-    /**
-     * Take the String representing the complete forecast in JSON Format and
-     * pull out the data we need to construct the Strings needed for the wireframes.
-     * <p>
-     * Fortunately parsing is easy:  constructor takes the JSON string and converts it
-     * into an Object hierarchy for us.
-     */
     public List<CinemaMovieListModel> getMoviesDataFromJson(String moviesJsonStr)
             throws JSONException {
 
@@ -115,9 +54,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
         final String MOVIE_VOTE = "vote_average";
         final String MOVIE_SYNOPSIS = "overview";
         final String MOVIE_RELEASE_DATE = "release_date";
-       // try {
 
-            //String[] resultStr = new String[20];
             List<CinemaMovieListModel> moviesdata = new ArrayList<>();
 
 
@@ -218,18 +155,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
             //now to link it with a url object
             URL url = new URL(builtUri.toString());
             Log.v(LOG_TAG, "Built uri" + builtUri.toString());
-            //here we are going to get the trailer of the particular movie
-           // FetchMoviesTask mfetchmovie = new FetchMoviesTask().addMovie();
-
-
-
-            //https://www.youtube.com/watch?v=wRaV4SIQY8A
-            //https://api.themoviedb.org/3/movie/245891/reviews?api_key=4066178db02b89ef245ae29365f3f7ac&language=en-US
-            //https://api.themoviedb.org/3/movie/245891/videos?api_key=4066178db02b89ef245ae29365f3f7ac&language=en-US
-
-
-            // Create the request to OpenWeatherMap, and open the connection
-            urlConnection = (HttpURLConnection) url.openConnection();
+                       urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 

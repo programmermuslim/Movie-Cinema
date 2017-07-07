@@ -1,8 +1,6 @@
 package imastudio.rizki.com.cinemamovie.helper;
 
-/**
- * Created by user on 2/15/2017.
- */
+
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -15,14 +13,7 @@ import android.util.Log;
 
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 
-/** This class is created so that we can call the addMovie method and
- * also it should be on the background thread hence we have define a new method
- * i can do it in the FetchMoviesTask doinbackground method but it fails to
- * do that whenever it call the doinbackground method the addMovie method is
- * also called which i don't want i only want it to be called when i click on
- * the button. So that's why i have to create another class where i can call
- * it seperately
- */
+
 
 public class UpdateFavCinema extends AsyncTask<Void, Void, Void> {
 

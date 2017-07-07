@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-/**
- * Created by user on 1/31/2017.
- */
+
 
 public class CinemaMovieProvider extends ContentProvider {
     /*

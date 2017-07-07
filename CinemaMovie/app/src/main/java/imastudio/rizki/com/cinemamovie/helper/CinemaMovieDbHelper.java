@@ -5,9 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-/**
- * Created by user on 1/31/2017.
- */
 
 public class CinemaMovieDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "movies.db";

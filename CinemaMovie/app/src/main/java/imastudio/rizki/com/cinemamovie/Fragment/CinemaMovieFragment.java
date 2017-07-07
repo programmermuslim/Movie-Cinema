@@ -24,9 +24,7 @@ import imastudio.rizki.com.cinemamovie.activity.DetailCinemaMovieActivity;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListModel;
 import imastudio.rizki.com.cinemamovie.adapter.CinemaMovieListAdapter;
 
-/**
- * Created by MAC on 7/7/17.
- */
+
 
 public class CinemaMovieFragment extends Fragment {
     public static final String EXTRA_MOVIE_DATA = "EXTRA_MOVIE_DATA";
@@ -59,23 +57,14 @@ public class CinemaMovieFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //This is the view of the view which is located within the fragment so
-        // wherever one start a activity actually a fragment is started and the
-        // the view of the fragment is decided by this method.
+
         View rootview = inflater.inflate(R.layout.fragment_cinemamovie, container, false);
 
         mAdapter = new CinemaMovieListAdapter(getActivity(), R.layout.item_cinemamovie);
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-//            mColumnNumber = 2;
-//        else
-//            mColumnNumber = 3;
+
         final GridView gridView = (GridView) rootview.findViewById(R.id.flavors_grid);
         gridView.setAdapter(mAdapter);
-        /**
-         * This is the method when you click on any images there is the onitemclicklistener
-         * and wherever it is clicked an action is defined within the click .
-         * this method handles the click on the images.
-         */
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -85,15 +74,7 @@ public class CinemaMovieFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // Configure RecyclerView
-//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-//            mColumnNumber = 2;
-//        else
-//            mColumnNumber = 3;
-//        GridLayoutManager layoutManager = new GridLayoutManager(this, mColumnNumber);
-//        mRecyclerView.setLayoutManager(layoutManager);
-//        mRecyclerView.setAdapter(mMoviesAdapter);
-//        mRecyclerView.setHasFixedSize(true);
+
         return rootview;
 
     }
@@ -103,7 +84,7 @@ public class CinemaMovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         menuRed = (FloatingActionMenu) view.findViewById(R.id.menu_red);
 
-        // For Floating action with menu.
+
         final FloatingActionButton programFab1 = new FloatingActionButton(getActivity());
         programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
         programFab1.setLabelText("Highest Rated");
@@ -114,7 +95,7 @@ public class CinemaMovieFragment extends Fragment {
         programFab2.setImageResource(R.drawable.ic_heart);
         menuRed.addMenuButton(programFab1);
         menuRed.addMenuButton(programFab2);
-        //fab1.setLabelText("Most Popular");
+
         programFab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

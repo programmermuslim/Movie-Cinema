@@ -3,9 +3,7 @@ package imastudio.rizki.com.cinemamovie.adapter;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by MAC on 7/7/17.
- */
+
 
 public class TrailerModel implements Parcelable {
     private String title;
