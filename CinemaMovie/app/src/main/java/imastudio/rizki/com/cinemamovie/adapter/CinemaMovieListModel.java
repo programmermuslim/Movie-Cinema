@@ -15,11 +15,7 @@ public class CinemaMovieListModel implements Parcelable {
     String mrating;
     int mid;
     String mbackUrl;
-    // title,release_date,synopsis,rating
 
-    //    public CinemaMovieListModel(int image) {
-//        this.image = image;
-//    }
     public CinemaMovieListModel(String Imageurl, String Title, String Release_date, String Synopsis , String Rating, int Id, String PosterUrl ) {
         this.mImageURl = Imageurl;
         this.mtitle = Title;

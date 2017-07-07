@@ -77,34 +77,34 @@
                 android:id="@+id/release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="174dp"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="150dp"
+                android:layout_marginStart="174dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                android:layout_below="@+id/title"
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="2"
                 android:padding="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@color/black"
-                tools:text="rating"
-                android:layout_marginStart="174dp" />
+                tools:text="rating" />
 
             <TextView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/release_date"
-                android:layout_marginLeft="174dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginStart="174dp"
+                android:layout_marginTop="16dp"
                 android:drawableLeft="@mipmap/rating_star_big"
                 android:drawablePadding="8dp"
+                android:drawableStart="@mipmap/rating_star_big"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="bottom"
                 android:padding="8dp"
-                android:layout_marginTop="16dp"
                 android:textColor="@color/black"
-                tools:text="7.2"
-                android:drawableStart="@mipmap/rating_star_big"
-                android:layout_marginStart="174dp" />
+                tools:text="7.2" />
 
             <TextView
                 android:id="@+id/synopsis"
@@ -112,93 +112,36 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/poster"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
                 android:padding="16dp"
-                android:textColor="@color/black"
-                android:text="synopsis"/>
-            <!--<include-->
-            <!--android:id="@+id/review_layout0"-->
-            <!--layout="@layout/reviews_cardview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/synopsis"-->
-            <!--android:layout_marginTop="16dp"-->
-            <!--android:visibility="gone"-->
-            <!--tools:visibility="visible" />-->
-            <TextView
-                android:id="@+id/trailers_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/synopsis"
-                android:layout_margin="16dp"
-                android:paddingTop="16dp"
-                android:text="Trailers"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:visibility="gone"
-                />
-            <HorizontalScrollView
-                android:id="@+id/trailers_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/trailers_header"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:clipChildren="false"
-                android:visibility="gone"
-                tools:ignore="RtlHardcoded,RtlSymmetry">
+                android:text="synopsis"
+                android:textColor="@color/black" />
 
-                <LinearLayout
-                    android:id="@+id/trailers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:orientation="horizontal"
-                    android:showDividers="middle"
-                    />
-
-            </HorizontalScrollView>
-            <TextView
-                android:id="@+id/reviews_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/trailers_container"
-                android:layout_margin="16dp"
-                android:paddingTop="16dp"
-                android:text="Reviews"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:visibility="gone"
-                />
-
-            <LinearLayout
-                android:id="@+id/reviews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/reviews_header"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:clipChildren="false"
-                android:orientation="vertical"
-                android:visibility="gone" />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_star_nfilled"
         android:clickable="true"
+        android:src="@drawable/ic_star_nfilled"
+        android:visibility="gone"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="81dp"
-        app:elevation="6dp"
-        android:src="@drawable/share"
         android:clickable="true"
-        app:layout_anchor="@id/app_bar"
         android:scaleType="centerCrop"
+        android:src="@drawable/share"
+        android:visibility="gone"
+        app:elevation="6dp"
+        app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>

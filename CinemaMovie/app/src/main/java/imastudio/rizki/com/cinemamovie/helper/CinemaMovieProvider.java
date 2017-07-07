@@ -11,38 +11,26 @@ import android.support.annotation.Nullable;
 
 
 public class CinemaMovieProvider extends ContentProvider {
-    /*
-     * this urimatcher used by the content provider
-     * The "s" in this variable name signigies that this
-     * Urimatcher is a static member variable of MovieProvder
-     */
+
     public static final UriMatcher sUriMatcher = buildUriMatcher();
     private CinemaMovieDbHelper mOpenHelper;
     private static final String TAG = CinemaMovieProvider.class.getSimpleName();
 
-    // step 1 of creating a content provider is determining the uri
-    // Each types of uri are used for different types of operations against
-    // the underlying database.
+
     static final int FAV_MOVIES = 100;
     static final int FAV_MOVIES_ITEMS = 200;
 
     static UriMatcher buildUriMatcher(){
-        // urimatcher have a corresponding code to return when a metch is
-        // found.
+
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = CinemaMovieContract.CONTENT_AUTHORITY;
 
-        //Use the addUri function to match each of the types.
-        // for each type of Uri you want to add, create a corresponding code.
+
         matcher.addURI(authority,CinemaMovieContract.PATH_MOVIE,FAV_MOVIES);
         matcher.addURI(authority,CinemaMovieContract.PATH_MOVIE+"/*",FAV_MOVIES_ITEMS);
         return matcher;
     }
-    /*
-    *onCreate is run on the main thread, so performing any lengthy operations
-    * will cause lag in our app. Since MovieDbHelper's constructor is
-    * very lightweight, we are safe to perform that initialization here.
-     */
+
     @Override
     public boolean onCreate() {
         mOpenHelper =  new CinemaMovieDbHelper(getContext());
@@ -54,8 +42,7 @@ public class CinemaMovieProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                    String sortOrder)     {
-        // Here's the switch statement that, given a URI, will determine what kind of request it is,
-        // and query the database accordingly.
+
 
         Cursor retCursor;
         switch (sUriMatcher.match(uri)) {
@@ -90,9 +77,7 @@ public class CinemaMovieProvider extends ContentProvider {
             // Get all favourite movies records.
             case FAV_MOVIES:
                 return CinemaMovieContract.MovieEntry.CONTENT_TYPE;
-            /**
-             * Get a movie record
-             */
+
             case FAV_MOVIES_ITEMS:
                 return CinemaMovieContract.MovieEntry.CONTENT_ITEM_TYPE;
 
@@ -119,10 +104,7 @@ public class CinemaMovieProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: "+uri);
         }
-        //calling notifyChange on the Content Resolver
-        //to notify all of the registered observers.
-        //Note : We must use the passed in uri & not the returnUri,
-        //as that will not correctly notify our cursors of the same.
+
         getContext().getContentResolver().notifyChange(uri,null);
         return null;
     }
@@ -135,10 +117,7 @@ public class CinemaMovieProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         int rowsDeleted;
 
-        // A null value deletes all rows.  In my implementation of this, I only notified
-        // the uri listeners (using the content resolver) if the rowsDeleted != 0 or the selection
-        // is null.
-        //this makes delete all rows return the no of rows deleted
+
         if (null == selection) selection = "1";
         switch (match) {
             case FAV_MOVIES:
@@ -169,7 +148,7 @@ public class CinemaMovieProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
-        // notify the listeners here.
+
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }

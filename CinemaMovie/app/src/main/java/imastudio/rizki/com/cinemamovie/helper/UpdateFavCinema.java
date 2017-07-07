@@ -45,7 +45,7 @@ public class UpdateFavCinema extends AsyncTask<Void, Void, Void> {
     }
 
     public void addMovie() {
-        //Check if the movie with this movie_id  exists in the db
+
 
         Log.d(LOG_TAG, CinemaMovieContract.MovieEntry.CONTENT_URI.getAuthority());
 
@@ -56,7 +56,7 @@ public class UpdateFavCinema extends AsyncTask<Void, Void, Void> {
                 new String[]{String.valueOf(mMovie.getId())},
                 null);
 
-        // If it exists, delete the movie with that movie id
+
         if (favMovieCursor.moveToFirst()) {
             int rowDeleted = mContext.getContentResolver().delete(CinemaMovieContract.MovieEntry.CONTENT_URI,
                     CinemaMovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?",
@@ -70,11 +70,10 @@ public class UpdateFavCinema extends AsyncTask<Void, Void, Void> {
 
         } else {
 
-            // Otherwise, insert it using the content resolver and the base URI
+
             ContentValues values = new ContentValues();
 
-            //Then add the data, along with the corresponding name of the data type,
-            //so the content provider knows what kind of value is being inserted.
+
             values.put(CinemaMovieContract.MovieEntry.COLUMN_MOVIE_ID, mMovie.getId());
             values.put(CinemaMovieContract.MovieEntry.COLUMN_TITLE, mMovie.getTitle());
             values.put(CinemaMovieContract.MovieEntry.COLUMN_POSTER_IMAGE, mMovie.getImageurl());
@@ -84,12 +83,12 @@ public class UpdateFavCinema extends AsyncTask<Void, Void, Void> {
             values.put(CinemaMovieContract.MovieEntry.COLUMN_BACK_POSTER, mMovie.getBackPoster());
 
 
-            // Finally, insert movie data into the database.
+
             Uri insertedUri = mContext.getContentResolver().insert(
                     CinemaMovieContract.MovieEntry.CONTENT_URI,
                     values);
 
-            // The resulting URI contains the ID for the row.  Extract the movie rowId from the Uri.
+
             long movieRowId = ContentUris.parseId(insertedUri);
 
             if (movieRowId > 0) {

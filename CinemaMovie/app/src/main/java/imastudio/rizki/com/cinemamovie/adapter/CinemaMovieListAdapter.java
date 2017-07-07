@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -35,10 +36,11 @@ public class CinemaMovieListAdapter extends ArrayAdapter<CinemaMovieListModel> {
 
         }
         ImageView posterView = (ImageView) convertView.findViewById(R.id.flavor_image);
-        // using the picasso library converting the image into gridview of images
+        TextView txtTitle = (TextView)convertView.findViewById(R.id.titleMovie);
+
         Log.v(LOG_TAG,"url "+ moviesList.getImageurl());
         Picasso.with(getContext()).load(moviesList.getImageurl()).placeholder(R.drawable.movie_place).fit().into(posterView);
-        //Glide.with(getContext()).load(moviesList.getImageurl()).crossFade().into(posterView);
+        txtTitle.setText(moviesList.getTitle());
 
 
         return convertView;

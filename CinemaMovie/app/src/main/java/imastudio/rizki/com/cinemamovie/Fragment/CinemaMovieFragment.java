@@ -32,18 +32,18 @@ public class CinemaMovieFragment extends Fragment {
     private FloatingActionMenu menuRed;
 
     public CinemaMovieFragment() {
-        // need to create empty constructor
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);// this will give the permission for the refresh button to inflate.
+        setHasOptionsMenu(true);
     }
 
     @Override
     public void onStart() {
-        // this method is called by default on the start of the app .
+
         FetchCinemaMoviesTask fetchMoviesTask = new FetchCinemaMoviesTask(getActivity(),mAdapter);
         SharedPreferences preference= PreferenceManager.getDefaultSharedPreferences(getActivity());
         String sortOrder = preference.getString(getString(R.string.pref_sort_key),
@@ -62,7 +62,7 @@ public class CinemaMovieFragment extends Fragment {
 
         mAdapter = new CinemaMovieListAdapter(getActivity(), R.layout.item_cinemamovie);
 
-        final GridView gridView = (GridView) rootview.findViewById(R.id.flavors_grid);
+        final GridView gridView = (GridView) rootview.findViewById(R.id.grid_cinema);
         gridView.setAdapter(mAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,24 +85,35 @@ public class CinemaMovieFragment extends Fragment {
         menuRed = (FloatingActionMenu) view.findViewById(R.id.menu_red);
 
 
-        final FloatingActionButton programFab1 = new FloatingActionButton(getActivity());
-        programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
-        programFab1.setLabelText("Highest Rated");
-        programFab1.setImageResource(R.drawable.ic_star);
-        final FloatingActionButton programFab2 = new FloatingActionButton((getActivity()));
-        programFab2.setButtonSize(FloatingActionButton.SIZE_MINI);
-        programFab2.setLabelText("Most Popular");
-        programFab2.setImageResource(R.drawable.ic_heart);
-        menuRed.addMenuButton(programFab1);
-        menuRed.addMenuButton(programFab2);
+        final FloatingActionButton HighRate = new FloatingActionButton(getActivity());
+        HighRate.setButtonSize(FloatingActionButton.SIZE_MINI);
+        HighRate.setLabelText("Highest Rated");
+        HighRate.setImageResource(R.drawable.ic_star);
+        final FloatingActionButton MostPop = new FloatingActionButton((getActivity()));
+        MostPop.setButtonSize(FloatingActionButton.SIZE_MINI);
+        MostPop.setLabelText("Most Popular");
+        MostPop.setImageResource(R.drawable.ic_heart);
+        menuRed.addMenuButton(HighRate);
+        menuRed.addMenuButton(MostPop);
+        menuRed.setMenuButtonColorNormal(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        menuRed.setMenuButtonColorPressed(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
-        programFab1.setOnClickListener(new View.OnClickListener() {
+        MostPop.setColorNormal(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        MostPop.setColorPressed(ContextCompat.getColor(getContext(),R.color.colorAccent));
+
+
+        HighRate.setColorNormal(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        HighRate.setColorPressed(ContextCompat.getColor(getContext(),R.color.colorAccent));
+
+
+
+        HighRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                programFab1.setLabelColors(ContextCompat.getColor(getActivity(), R.color.grey),
+                HighRate.setLabelColors(ContextCompat.getColor(getActivity(), R.color.grey),
                         ContextCompat.getColor(getActivity(), R.color.light_grey),
                         ContextCompat.getColor(getActivity(), R.color.white_transparent));
-                programFab1.setLabelTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+                HighRate.setLabelTextColor(ContextCompat.getColor(getActivity(), R.color.black));
             }
         });
         menuRed.setClosedOnTouchOutside(true);

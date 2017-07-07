@@ -82,20 +82,13 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
 
                 imageURl = "https://image.tmdb.org/t/p/w185" + poster; //w185
                 posterURl = "https://image.tmdb.org/t/p/w500" + backposter; //720
-//                Log.v(LOG_TAG, "url for image: " + imageURl);
-//                Log.v(LOG_TAG, "Title: " + title);
-//                Log.v(LOG_TAG, "release date: " + release_date);
-//                Log.v(LOG_TAG, "rating: " + rating);
-//                Log.v(LOG_TAG, "synopsis: " + synopsis);
+
                 Log.v(LOG_TAG, "movieid: " + id);
 
-                //movie= new Movie(imageURl,title,release_date,synopsis,rating,imageURl);
-                // movieArrayList.add(imageURl);
-                //movieArrayList.add(title);
-                // return imageURl;
+
                 CinemaMovieListModel movieList = new CinemaMovieListModel(imageURl, title, release_date, synopsis, rating, id,posterURl);
                 moviesdata.add(movieList);
-                //resultStr[i]= imageURl;
+
 
             }
         return moviesdata;
@@ -106,23 +99,16 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
     @Override
     protected List<CinemaMovieListModel> doInBackground(String... params) {
         String sortQuery = params[0];
-        // These two need to be declared outside the try/catch
-        // so that they can be closed in the finally block.
+
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
-        // Will contain the raw JSON response as a string.
+
         String movieJsonStr = null;
 
-        // define the values of the constants
-        // String popular = "popular";
-        //String language = "en-US";
         int numMov = 0;
         try {
-//            // getting the saved value in the shared Preference and changing the preference according
-//            // to the user .
-//            SharedPreferences preference= PreferenceManager.getDefaultSharedPreferences(getContext());
-//            String sortOrder = preference.getString(getString(R.string.pref_sort_key), (R.string.pref_order_pop));
+
             switch(sortQuery)
                 {   case "0":   sortQuery="popular";
                     break;
@@ -130,13 +116,8 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
                     case "1":   sortQuery="top_rated";
                         break;
                 }
-//
-            //Log.v(LOG_TAG,"lkjk"+sortOrder);
 
-            // Construct the URL for the themoviedb query
-            // Possible parameters are avaiable at OWM's forecast API page, at
-            // http://api.themoviedb.org/3/movie
-            // to build the uri
+
             final String MOVIE_BASE_URL =
                     "https://api.themoviedb.org/3/movie";
 
@@ -144,7 +125,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
             final String APPID_PARAM = "api_key";
             final String LANGUAGE_PARAM = "language";
 
-            // now how to use it in the uri.builder class
+
             Uri builtUri = Uri.parse(MOVIE_BASE_URL)
                     .buildUpon()
                     .appendPath(sortQuery)
@@ -152,14 +133,14 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
                     .appendQueryParameter(LANGUAGE_PARAM, "en-US")
                     .build();
 
-            //now to link it with a url object
+
             URL url = new URL(builtUri.toString());
             Log.v(LOG_TAG, "Built uri" + builtUri.toString());
                        urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            // Read the input stream into a String
+
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
@@ -170,9 +151,7 @@ public class FetchCinemaMoviesTask extends AsyncTask<String, Void, List<CinemaMo
 
             String line;
             while ((line = reader.readLine()) != null) {
-                // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
-                // But it does make debugging a *lot* easier if you print out the completed
-                // buffer for debugging.
+
                 buffer.append(line + "\n");
             }
 
